@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연성대학교 트레이너 교육과정</title>
+<style>
+  :root{
+    --navy-900:#0d2544;
+    --navy-700:#1b4479;
+    --navy-500:#2c66ad;
+    --navy-100:#eef3fa;
+    --navy-050:#f6f9fd;
+    --gold:#c99b3f;
+    --ph-bg:#fff8ec;
+    --ph-border:#d9a441;
+    --ph-text:#9a6a10;
+    --ink:#16233a;
+    --muted:#5c6b80;
+    --white:#ffffff;
+    --radius:14px;
+    --shadow:0 8px 28px rgba(13,37,68,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Pretendard","Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;}
+  h1,h2,h3,h4{margin:0;line-height:1.35;}
+  .eyebrow{
+    display:inline-block;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--navy-500);
+    background:var(--navy-100);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .section-title{font-size:32px;font-weight:800;color:var(--navy-900);margin-bottom:14px;}
+  .section-desc{font-size:16px;color:var(--muted);max-width:620px;}
+  .section-head{margin-bottom:48px;}
+  .section-head.center{text-align:center;margin-left:auto;margin-right:auto;}
+  .section-head.center .section-desc{margin-left:auto;margin-right:auto;}
+
+  /* placeholder styling */
+  .ph{
+    display:inline-block;
+    background:var(--ph-bg);
+    border:1.5px dashed var(--ph-border);
+    color:var(--ph-text);
+    font-size:0.92em;
+    font-weight:600;
+    padding:1px 8px;
+    border-radius:6px;
+  }
+  .ph-block{
+    background:var(--ph-bg);
+    border:1.5px dashed var(--ph-border);
+    color:var(--ph-text);
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:14px;
+    font-weight:600;
+    text-align:center;
+  }
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #e6ecf4;
+  }
+  header .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .brand{display:flex;flex-direction:column;line-height:1.2;}
+  .brand .univ{font-size:12px;font-weight:700;color:var(--navy-500);letter-spacing:.04em;}
+  .brand .title{font-size:17px;font-weight:800;color:var(--navy-900);}
+  nav{display:flex;gap:28px;font-size:14px;font-weight:600;color:var(--navy-900);}
+  nav a{text-decoration:none;opacity:.75;}
+  nav a:hover{opacity:1;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--navy-900);color:#fff;
+    padding:11px 22px;border-radius:999px;
+    font-size:14px;font-weight:700;text-decoration:none;
+    white-space:nowrap;
+    box-shadow:var(--shadow);
+    border:none;cursor:pointer;
+  }
+  .btn:hover{background:var(--navy-700);}
+  .btn.ghost{
+    background:transparent;color:var(--navy-900);
+    border:1.5px solid var(--navy-900);
+    box-shadow:none;
+  }
+  .btn.ghost:hover{background:var(--navy-900);color:#fff;}
+  .btn.lg{padding:16px 32px;font-size:16px;}
+
+  /* hero */
+  .hero{
+    background:linear-gradient(160deg,var(--navy-900) 0%,var(--navy-700) 62%,var(--navy-500) 100%);
+    color:#fff;padding:120px 0 100px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+    border-radius:50%;background:rgba(255,255,255,0.06);
+  }
+  .hero .wrap{position:relative;}
+  .hero .eyebrow{background:rgba(255,255,255,0.12);color:#fff;}
+  .hero h1{font-size:44px;font-weight:800;max-width:760px;letter-spacing:-0.01em;}
+  .hero h1 .accent{color:#ffd98a;}
+  .hero p{font-size:17px;color:rgba(255,255,255,0.82);margin-top:20px;max-width:600px;}
+  .hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
+  .hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,0.6);}
+  .hero .btn.ghost:hover{background:#fff;color:var(--navy-900);}
+  .hero-notice{
+    margin-top:40px;font-size:13px;color:rgba(255,255,255,0.65);
+    border-top:1px solid rgba(255,255,255,0.18);padding-top:18px;max-width:640px;
+  }
+
+  /* why */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .why-card{
+    background:var(--navy-050);border-radius:var(--radius);padding:28px 22px;
+    border:1px solid #e6ecf4;
+  }
+  .why-card .num{font-size:13px;font-weight:800;color:var(--navy-500);margin-bottom:14px;}
+  .why-card h3{font-size:17px;font-weight:800;color:var(--navy-900);margin-bottom:10px;}
+  .why-card p{font-size:14px;color:var(--muted);margin:0;}
+
+  /* roadmap */
+  .roadmap-section{background:var(--navy-050);}
+  .roadmap{display:flex;flex-direction:column;gap:0;align-items:center;}
+  .rm-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .rm-box{
+    background:#fff;border:1.5px solid #dbe4f0;border-radius:12px;
+    padding:16px 18px;min-width:118px;text-align:center;box-shadow:var(--shadow);
+  }
+  .rm-box .code{font-size:12px;font-weight:800;color:var(--navy-500);letter-spacing:.04em;}
+  .rm-box .name{font-size:13px;font-weight:700;color:var(--navy-900);margin-top:6px;}
+  .rm-box.basic{border-color:var(--navy-500);}
+  .rm-box.a1{
+    background:var(--navy-900);border-color:var(--navy-900);color:#fff;
+  }
+  .rm-box.a1 .code{color:#ffd98a;}
+  .rm-box.a1 .name{color:#fff;}
+  .rm-group{
+    display:flex;gap:10px;padding:14px;border:1.5px dashed var(--navy-500);border-radius:14px;
+    background:rgba(44,102,173,0.05);align-items:center;position:relative;
+  }
+  .rm-group::before{
+    content:"3부작";position:absolute;top:-11px;left:16px;background:var(--navy-500);
+    color:#fff;font-size:11px;font-weight:800;padding:2px 10px;border-radius:999px;
+  }
+  .rm-arrow{font-size:20px;color:var(--navy-500);font-weight:700;}
+  .rm-arrow.down{margin:14px 0;}
+
+  /* course cards */
+  .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .course-card{
+    border:1px solid #e6ecf4;border-radius:var(--radius);padding:26px 24px;
+    background:#fff;box-shadow:var(--shadow);
+  }
+  .course-card .tag{
+    display:inline-block;font-size:12px;font-weight:800;color:var(--navy-500);
+    background:var(--navy-100);padding:4px 12px;border-radius:999px;margin-bottom:14px;
+  }
+  .course-card h3{font-size:18px;font-weight:800;color:var(--navy-900);margin-bottom:10px;}
+  .course-card .desc{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:42px;}
+  .course-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:12.5px;}
+  .course-meta span{background:var(--navy-050);color:var(--navy-700);padding:4px 10px;border-radius:8px;font-weight:600;}
+
+  .advance-block{margin-top:56px;}
+  .advance-block .a1-card{
+    background:linear-gradient(135deg,var(--navy-900),var(--navy-700));
+    color:#fff;border-radius:var(--radius);padding:30px 28px;margin-bottom:26px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+    box-shadow:var(--shadow);
+  }
+  .a1-card .tag{background:rgba(255,255,255,0.15);color:#ffd98a;}
+  .a1-card h3{color:#fff;font-size:20px;}
+  .a1-card .desc{color:rgba(255,255,255,0.8);}
+  .a1-card .badge{
+    font-size:12px;font-weight:800;background:#ffd98a;color:var(--navy-900);
+    padding:6px 14px;border-radius:999px;white-space:nowrap;
+  }
+  .trilogy-wrap{
+    border:1.5px dashed var(--navy-500);border-radius:16px;padding:28px 24px 24px;
+    position:relative;background:var(--navy-050);
+  }
+  .trilogy-wrap .trilogy-label{
+    position:absolute;top:-13px;left:24px;background:var(--navy-500);color:#fff;
+    font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px;
+  }
+  .trilogy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .a56-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px;}
+
+  /* instructor */
+  .instructor-card{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+    background:var(--navy-050);border-radius:var(--radius);padding:36px;
+    border:1px solid #e6ecf4;
+  }
+  .instructor-photo{
+    width:100%;aspect-ratio:3/4;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:16px;
+  }
+  .instructor-info dl{display:grid;grid-template-columns:110px 1fr;gap:12px 16px;margin:0;}
+  .instructor-info dt{font-size:13px;font-weight:800;color:var(--navy-700);align-self:start;padding-top:2px;}
+  .instructor-info dd{margin:0;font-size:14.5px;color:var(--ink);}
+  .instructor-info h3{font-size:22px;font-weight:800;color:var(--navy-900);margin-bottom:18px;}
+
+  /* gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .gallery-item{
+    aspect-ratio:4/3;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+  }
+
+  /* info table */
+  .info-table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  .info-table th,.info-table td{
+    padding:16px 18px;border-bottom:1px solid #e6ecf4;text-align:left;
+  }
+  .info-table th{
+    width:180px;background:var(--navy-050);color:var(--navy-900);font-weight:800;font-size:13.5px;
+  }
+  .info-table tr:last-child th,.info-table tr:last-child td{border-bottom:none;}
+  .info-note{margin-top:18px;font-size:13px;color:var(--muted);}
+
+  /* contact */
+  .contact-section{
+    background:linear-gradient(160deg,var(--navy-900),var(--navy-700));
+    color:#fff;border-radius:24px;padding:64px 48px;text-align:center;
+  }
+  .contact-section h2{color:#fff;font-size:28px;font-weight:800;}
+  .contact-section p{color:rgba(255,255,255,0.8);margin-top:14px;font-size:15px;}
+  .contact-section .btn{margin-top:30px;background:#ffd98a;color:var(--navy-900);}
+  .contact-section .btn:hover{background:#fff;}
+
+  footer{padding:40px 0;text-align:center;font-size:13px;color:var(--muted);border-top:1px solid #e6ecf4;}
+  footer .foot-org{margin-bottom:6px;}
+
+  @media (max-width:860px){
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .course-grid{grid-template-columns:1fr;}
+    .trilogy-grid{grid-template-columns:1fr;}
+    .a56-grid{grid-template-columns:1fr;}
+    .instructor-card{grid-template-columns:1fr;}
+    .instructor-photo{max-width:220px;margin:0 auto;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    nav{display:none;}
+    .hero h1{font-size:32px;}
+    section{padding:64px 0;}
+    .contact-section{padding:48px 24px;}
+    .rm-row{flex-direction:column;}
+  }
+  @media (max-width:520px){
+    .gallery-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <span class="univ">연성대학교</span>
+      <span class="title">트레이너 교육과정</span>
+    </div>
+    <nav>
+      <a href="#why">교육 소개</a>
+      <a href="#basic">BASIC</a>
+      <a href="#advance">ADVANCE</a>
+      <a href="#instructor">강사 소개</a>
+      <a href="#info">수강 안내</a>
+    </nav>
+    <a class="btn" href="#contact">문의하기</a>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <span class="eyebrow">연성대학교 주최</span>
+    <h1>기초부터 심화까지,<br><span class="accent">체계적인</span> 트레이너 교육과정</h1>
+    <p>BASIC 3과정과 ADVANCE 6과정으로 이어지는 단계별 커리큘럼을 통해 이론과 실습을 겸비한 전문 트레이너 역량을 기릅니다.</p>
+    <div class="cta-row">
+      <a class="btn lg" href="#info">수강 안내 보기</a>
+      <a class="btn lg ghost" href="#contact">이메일로 문의하기</a>
+    </div>
+    <div class="hero-notice">본 과정은 연성대학교 명의로 주최됩니다. 일정·시수·정원·수강료 등 세부 사항은 하단 수강 안내 및 문의를 통해 확인하실 수 있습니다.</div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">WHY THIS COURSE</span>
+      <h2 class="section-title">왜 이 교육인가</h2>
+      <p class="section-desc">단계별 로드맵과 실습 중심 커리큘럼으로 실무에 바로 적용 가능한 트레이너 역량을 키웁니다.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="num">01</div>
+        <h3>단계별 체계적 로드맵</h3>
+        <p>BASIC에서 ADVANCE까지 순차적으로 이어지는 커리큘럼으로 기초 역량부터 심화 전문성까지 단계적으로 쌓아갑니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">02</div>
+        <h3>이론과 실습의 균형</h3>
+        <p>핵심 이론 학습과 함께 실습을 병행하여 현장에서 바로 활용할 수 있는 실무 역량을 기릅니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">03</div>
+        <h3>진단 중심 심화 과정</h3>
+        <p>ADVANCE 과정은 진단(A1)을 출발점으로 하여 후속 과정과 유기적으로 연결되는 구조로 설계되었습니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="num">04</div>
+        <h3>수료증 발급</h3>
+        <p>전 과정을 이수한 수강생에게는 수료증이 발급됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section" id="roadmap">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">CURRICULUM MAP</span>
+      <h2 class="section-title">BASIC → ADVANCE 체계도</h2>
+      <p class="section-desc">기초 과정 3개를 이수한 후, 진단을 시작으로 하는 심화 과정 6개로 이어집니다.</p>
+    </div>
+    <div class="roadmap">
+      <div class="rm-row">
+        <div class="rm-box basic"><div class="code">BASIC 1</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+        <span class="rm-arrow">→</span>
+        <div class="rm-box basic"><div class="code">BASIC 2</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+        <span class="rm-arrow">→</span>
+        <div class="rm-box basic"><div class="code">BASIC 3</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+      </div>
+      <div class="rm-arrow down">↓</div>
+      <div class="rm-row">
+        <div class="rm-box a1"><div class="code">A1 · 진단</div><div class="name">과정명 입력 필요</div></div>
+        <span class="rm-arrow">→</span>
+        <div class="rm-group">
+          <div class="rm-box"><div class="code">A2</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+          <div class="rm-box"><div class="code">A3</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+          <div class="rm-box"><div class="code">A4</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+        </div>
+        <span class="rm-arrow">→</span>
+        <div class="rm-box"><div class="code">A5</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+        <span class="rm-arrow">→</span>
+        <div class="rm-box"><div class="code">A6</div><div class="name">과정명 <span class="ph">입력 필요</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="basic">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">BASIC COURSE</span>
+      <h2 class="section-title">BASIC 3과정</h2>
+      <p class="section-desc">트레이너로서 갖추어야 할 기초 이론과 기본기를 다지는 과정입니다.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <span class="tag">BASIC 1</span>
+        <h3><span class="ph">과정명 입력 필요</span></h3>
+        <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+        <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+      </div>
+      <div class="course-card">
+        <span class="tag">BASIC 2</span>
+        <h3><span class="ph">과정명 입력 필요</span></h3>
+        <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+        <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+      </div>
+      <div class="course-card">
+        <span class="tag">BASIC 3</span>
+        <h3><span class="ph">과정명 입력 필요</span></h3>
+        <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+        <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap-section" id="advance">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">ADVANCE COURSE</span>
+      <h2 class="section-title">ADVANCE 6과정</h2>
+      <p class="section-desc">진단(A1)을 시작으로 세 과정이 하나의 흐름을 이루는 "3부작"(A2·A3·A4), 그리고 심화 과정(A5·A6)으로 구성됩니다.</p>
+    </div>
+    <div class="advance-block">
+      <div class="a1-card">
+        <div>
+          <span class="tag">A1 · 진단</span>
+          <h3><span class="ph" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);color:#ffe9bd;">과정명 입력 필요</span></h3>
+          <p class="desc"><span class="ph" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);color:#ffe9bd;">과정 설명 입력 필요</span></p>
+        </div>
+        <span class="badge">ADVANCE 출발점</span>
+      </div>
+
+      <div class="trilogy-wrap">
+        <span class="trilogy-label">3부작</span>
+        <div class="trilogy-grid">
+          <div class="course-card">
+            <span class="tag">A2</span>
+            <h3><span class="ph">과정명 입력 필요</span></h3>
+            <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+            <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+          </div>
+          <div class="course-card">
+            <span class="tag">A3</span>
+            <h3><span class="ph">과정명 입력 필요</span></h3>
+            <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+            <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+          </div>
+          <div class="course-card">
+            <span class="tag">A4</span>
+            <h3><span class="ph">과정명 입력 필요</span></h3>
+            <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+            <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="a56-grid">
+        <div class="course-card">
+          <span class="tag">A5</span>
+          <h3><span class="ph">과정명 입력 필요</span></h3>
+          <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+          <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+        </div>
+        <div class="course-card">
+          <span class="tag">A6</span>
+          <h3><span class="ph">과정명 입력 필요</span></h3>
+          <p class="desc"><span class="ph">과정 설명 입력 필요</span></p>
+          <div class="course-meta"><span>시수: 문의</span><span>정원: 문의</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="instructor">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">INSTRUCTOR</span>
+      <h2 class="section-title">강사 소개</h2>
+      <p class="section-desc">교육을 이끄는 강사진을 소개합니다.</p>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-photo ph-block">사진 준비중</div>
+      <div class="instructor-info">
+        <h3><span class="ph">이름 입력 필요</span></h3>
+        <dl>
+          <dt>소속·직함</dt><dd><span class="ph">입력 필요</span></dd>
+          <dt>전공·학위</dt><dd><span class="ph">입력 필요</span></dd>
+          <dt>보유 자격</dt><dd><span class="ph">입력 필요</span></dd>
+          <dt>주요 경력</dt><dd><span class="ph">입력 필요</span></dd>
+          <dt>담당 과정</dt><dd><span class="ph">입력 필요</span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">GALLERY</span>
+      <h2 class="section-title">실습 갤러리</h2>
+      <p class="section-desc">교육 현장의 실습 모습을 소개합니다.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+      <div class="gallery-item ph-block">실습 사진 준비중</div>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">GUIDE</span>
+      <h2 class="section-title">수강 안내</h2>
+      <p class="section-desc">기수별 일정 및 세부 사항은 문의를 통해 안내드립니다.</p>
+    </div>
+    <table class="info-table">
+      <tr><th>주최</th><td>연성대학교 <span class="ph">정식 명칭 입력 필요</span> (예: 스포츠재활과, 평생교육원 등)</td></tr>
+      <tr><th>기수</th><td><span class="ph">입력 필요</span></td></tr>
+      <tr><th>요일·시간</th><td><span class="ph">입력 필요</span></td></tr>
+      <tr><th>교육 기간</th><td><span class="ph">입력 필요</span></td></tr>
+      <tr><th>과정당 시수</th><td>문의</td></tr>
+      <tr><th>모집 정원</th><td>문의</td></tr>
+      <tr><th>수강료</th><td>BASIC 문의 · ADVANCE 문의 · 패키지 문의</td></tr>
+      <tr><th>수료 혜택</th><td><span class="ph">발급 주체 입력 필요</span> 명의의 수료증 발급</td></tr>
+    </table>
+    <p class="info-note">※ 일정·시수·정원·수강료는 기수별로 상이할 수 있으며, 정확한 사항은 이메일 문의를 통해 안내드립니다.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-section">
+      <span class="eyebrow" style="background:rgba(255,255,255,0.15);color:#fff;">CONTACT</span>
+      <h2>교육과정에 대해 궁금하신 점이 있으신가요?</h2>
+      <p>성명, 연락처, 희망 과정을 남겨주시면 빠르게 안내드리겠습니다.<br>
+      대표 문의 이메일: <span class="ph" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.5);color:#ffe9bd;">jaewoojung0923@gmail.com (확정 전 임시 사용)</span></p>
+      <a class="btn lg" href="mailto:jaewoojung0923@gmail.com?subject=%5B%EC%97%B0%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90%20%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%84%88%20%EA%B5%90%EC%9C%A1%EA%B3%BC%EC%A0%95%5D%20%EC%88%98%EA%B0%95%20%EB%AC%B8%EC%9D%98&body=%EC%84%B1%EB%AA%85%3A%20%0A%EC%97%B0%EB%9D%BD%EC%B2%98%3A%20%0A%ED%9D%AC%EB%A7%9D%20%EA%B3%BC%EC%A0%95%3A%20(BASIC%20%2F%20ADVANCE%20%EC%A4%91%20%EA%B8%B0%EC%9E%AC%20%EB%B6%80%ED%83%81%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4)%0A%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%3A%20">이메일로 문의하기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-org">주최: 연성대학교 <span class="ph">정식 명칭 입력 필요</span></div>
+    <div>&copy; 2026 연성대학교 트레이너 교육과정. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
